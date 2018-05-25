@@ -10,7 +10,7 @@ const ground = new Image();
 ground.src = "img/ground.png"
 
 const foodImg = new Image();
-foodImg.src = "img/foodImg";
+foodImg.src = "img/food.png";
 
 //Create the sanke
 
@@ -38,6 +38,19 @@ let score = 0;
 function draw(){
   ctx.drawImage(ground,0,0);
 
+  for(let i=0; i < snake.length; i++){
+    ctx.fillStyle = (i == 0) ? "green" : "white";
+    ctx.fillRect(snake[i].x, snake[i].y,box,box);
+
+    ctx.strokeStyle = "red";
+    ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+  }
+
+  ctx.drawImage(foodImg, food.x, food.y);
+
+  ctx.fillStyle = "white";
+  ctx.font = "45px Changa one";
+  ctx.fillText(score, 2*box, 1.6*box);
 }
 
 //Call draw function every 100ms
