@@ -32,6 +32,10 @@ let food = {
 
 let score = 0;
 
+//control the snake
+
+let d;
+
 document.addEventListener("keydown",direction);
 
 function direction(event){
@@ -54,37 +58,42 @@ function direction(event){
 //Draw everything to the canvas
 
 function draw(){
-  ctx.drawImage(ground,0,0);
 
-  for(let i=0; i < snake.length; i++){
-    ctx.fillStyle = (i == 0) ? "green" : "white";
-    ctx.fillRect(snake[i].x, snake[i].y,box,box);
+    ctx.drawImage(ground,0,0);
 
-    ctx.strokeStyle = "red";
-    ctx.strokeRect(snake[i].x, snake[i].y, box, box);
-  }
+    for( let i = 0; i < snake.length ; i++){
+        ctx.fillStyle = ( i == 0 )? "green" : "white";
+        ctx.fillRect(snake[i].x,snake[i].y,box,box);
 
-  ctx.drawImage(foodImg, food.x, food.y);
+        ctx.strokeStyle = "red";
+        ctx.strokeRect(snake[i].x,snake[i].y,box,box);
+    }
 
-  //Old head position
-  let snakeX = snake[0].x;
-  let snakeY = snake[0].y;
+    ctx.drawImage(foodImg, food.x, food.y);
 
-  //Remove the tail
-  snake.pop();
+    // old head position
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
 
-  //Wich direction
-  if( d = "LEFT") snakeX -= box;
-  if( d = "UP") snakeY -= box;
-  if( d = "RIGHT") snakeX += box;
-  if( d = "DOWN") snakeY += box;
+    // which direction
+    if( d == "LEFT") snakeX -= box;
+    if( d == "UP") snakeY -= box;
+    if( d == "RIGHT") snakeX += box;
+    if( d == "DOWN") snakeY += box;
 
+    // remove the tail
+    snake.pop();
 
+    // add new Head
 
-  ctx.fillStyle = "White";
-  ctx.font = "45px Changa one";
-  ctx.fillText(score, 2*box, 1.6*box);
+    let newHead = {
+        x : snakeX,
+        y : snakeY
+    }
+
+    ctx.fillStyle = "white";
+    ctx.font = "45px Changa one";
+    ctx.fillText(score,2*box,1.6*box);
 }
-
 //Call draw function every 100ms
 let game = setInterval(draw,100);
