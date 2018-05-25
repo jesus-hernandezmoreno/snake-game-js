@@ -56,18 +56,20 @@ let d;
 document.addEventListener("keydown",direction);
 
 function direction(event){
-  if(event.keyCode == 37){
-    d = "LEFT";
-  }
-  else if(event.keyCode == 38){
-    d = "UP";
-  }
-  else if(event.keyCode == 39){
-    d = "RIGHT";
-  }
-  else if(event.keyCode == 40){
-    d = "DOWN";
-  }
+    let key = event.keyCode;
+    if( key == 37 && d != "RIGHT"){
+        left.play();
+        d = "LEFT";
+    }else if(key == 38 && d != "DOWN"){
+        d = "UP";
+        up.play();
+    }else if(key == 39 && d != "LEFT"){
+        d = "RIGHT";
+        right.play();
+    }else if(key == 40 && d != "UP"){
+        d = "DOWN";
+        down.play();
+    }
 }
 
 // cheack collision function
