@@ -53,7 +53,15 @@ function direction(event){
   }
 }
 
-//Control the Snake
+// cheack collision function
+function collision(head,array){
+    for(let i = 0; i < array.length; i++){
+        if(head.x == array[i].x && head.y == array[i].y){
+            return true;
+        }
+    }
+    return false;
+}
 
 //Draw everything to the canvas
 
@@ -93,6 +101,13 @@ function draw(){
       }else{
           // remove the tail
           snake.pop();
+      }
+
+    // game over
+
+      if(snakeX < box || snakeX > 17 * box || snakeY < 3*box || snakeY > 17*box || collision(newHead,snake)){
+          clearInterval(game);
+          dead.play();
       }
 
     // add new Head
