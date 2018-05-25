@@ -14,7 +14,7 @@ foodImg.src = "img/foodImg";
 
 //Create the sanke
 
-let snake[];
+let snake = [];
 
 snake[0] = {
   x : 9 * box,
@@ -31,3 +31,14 @@ let food = {
 //Create the score
 
 let score = 0;
+
+
+//Draw everything to the canvas
+
+function draw(){
+  ctx.drawImage(ground,0,0);
+
+}
+
+//Call draw function every 100ms
+let game = setInterval(draw,100);
